@@ -44,7 +44,10 @@ defmodule OtelExample.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:opentelemetry, "~> 0.6"},
+      {:opentelemetry_api, "~> 0.6"},
+      {:opentelemetry_exporter, "~> 0.6"}
     ]
   end
 

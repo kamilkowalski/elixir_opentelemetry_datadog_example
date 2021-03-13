@@ -1,0 +1,23 @@
+receivers:
+  otlp:
+    protocols:
+      http:
+
+exporters:
+  datadog/api:
+    env: "${DD_ENV}"
+    service: "${DD_SERVICE}"
+    version: "${DD_VERSION}"
+    api:
+      key: "${DD_API_KEY}"
+
+processors:
+  batch:
+    timeout: 10s
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [datadog/api]

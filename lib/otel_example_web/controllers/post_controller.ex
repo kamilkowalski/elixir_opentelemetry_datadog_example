@@ -1,12 +1,16 @@
 defmodule OtelExampleWeb.PostController do
   use OtelExampleWeb, :controller
 
+  require OpenTelemetry.Tracer, as: Tracer
+
   alias OtelExample.Content
   alias OtelExample.Content.Post
 
   def index(conn, _params) do
-    posts = Content.list_posts()
-    render(conn, "index.html", posts: posts)
+    Tracer.with_span "GET /posts" do
+      posts = Content.list_posts()
+      render(conn, "index.html", posts: posts)
+    end
   end
 
   def new(conn, _params) do

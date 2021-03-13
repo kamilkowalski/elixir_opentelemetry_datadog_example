@@ -1,0 +1,14 @@
+version: "3"
+services:
+  otel-collector:
+    image: "otel/opentelemetry-collector-contrib:latest"
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    ports:
+      - "9090:55681" # OTLP HTTP receiver
+    environment:
+      - DD_API_KEY=${DD_API_KEY}
+      - DD_SERVICE=${DD_SERVICE}
+      - DD_VERSION=${DD_VERSION}
+      - DD_ENV=${USER}-local
