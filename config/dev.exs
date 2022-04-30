@@ -5,7 +5,8 @@ config :otel_example, OtelExample.Repo,
   username: "postgres",
   password: "postgres",
   database: "otel_example_dev",
-  hostname: "localhost",
+  hostname: System.get_env("PGHOST"),
+  port: 5432,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
