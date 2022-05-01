@@ -3,6 +3,24 @@ version: '3'
 
 # Containers we're going to run.
 services:
+
+   dd-agent:
+     container_name: dd-agent
+     image: datadog/agent:latest
+     env_file:
+       - ~/sandbox.docker.env
+     volumes:
+       - /var/run/docker.sock:/var/run/docker.sock:ro
+       - /proc/:/host/proc/:ro
+       - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
+     environment:
+       - DD_APM_ENABLED=true
+       - DD_APM_NON_LOCAL_TRAFFIC=true
+       - DD_LOG_LEVEL=TRACE
+       - DD_DOGSTATSD_NON_LOCAL_TRAFFIC=true
+       - DD_AC_EXCLUDE=name:collector
+       - DD_OTLP_HTTP_PORT=4318
+
    # Our Phoenix container.
    phoenix:
       # The build parameters for this container.
@@ -10,18 +28,21 @@ services:
          # Here we define that it should build from the current directory.
          context: .
       environment:
+       - OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://dd-agent:4318
          # Variables to connect to our Postgres server.
-         PGUSER: postgres
-         PGPASSWORD: postgres
-         PGDATABASE: otel_example_dev
-         PGPORT: 5432
+       - PGUSER=postgres
+       - PGPASSWORD=postgres
+       - PGDATABASE=otel_example_dev
+       - PGPORT=5432
          # Hostname of our Postgres container.
-         PGHOST: db
+       - PGHOST=db
+         #OTEL_EXPORTER_OTLP_ENDPOINT: http://dd-agent:4318
       ports:
          # Mapping the port to make the Phoenix app accessible outside of the container.
          - '4000:4000'
       depends_on:
          # The DB container needs to be started before we start this container.
+         - dd-agent
          - db
    db:
       # We use the predefined Postgres image.

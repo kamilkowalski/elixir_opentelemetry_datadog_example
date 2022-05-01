@@ -1,6 +1,9 @@
 # ./Dockerfile
 
 # Extend from the official Elixir image.
+
+# See https://elixirforum.com/t/building-elixir-erlang-linux-amd64-application-image-on-apple-silicon/43913
+
 FROM hexpm/elixir:1.13.0-rc.1-erlang-24.1.5-ubuntu-xenial-20210114
 
 ENV MIX_HOME=/opt/mix
