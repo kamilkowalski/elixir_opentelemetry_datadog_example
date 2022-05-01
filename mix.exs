@@ -5,7 +5,7 @@ defmodule OtelExample.MixProject do
     [
       app: :otel_example,
       version: "0.1.0",
-      elixir: "~> 1.7",
+      elixir: "~> 1.11",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
@@ -45,9 +45,9 @@ defmodule OtelExample.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:opentelemetry, "~> 0.6"},
-      {:opentelemetry_api, "~> 0.6"},
-      {:opentelemetry_exporter, "~> 0.6"}
+      {:opentelemetry, "~> 1.0.2"},
+      {:opentelemetry_api, "~> 1.0.2"},
+      {:opentelemetry_exporter, "~> 1.0.2"},
     ]
   end
 

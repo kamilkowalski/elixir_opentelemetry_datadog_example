@@ -28,7 +28,7 @@ services:
          # Here we define that it should build from the current directory.
          context: .
       environment:
-       - OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://dd-agent:4318
+       #- OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://dd-agent:4318
          # Variables to connect to our Postgres server.
        - PGUSER=postgres
        - PGPASSWORD=postgres
