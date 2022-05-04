@@ -10,7 +10,9 @@ This is the recommended approach for [sending OpenTelemetry data to Datadog](htt
 
 You'll need **Docker**.
 
-First, add your Datadog API key. This example assume you have a file in you home directory called `sandbox.docker.env` that contains:
+This example uses a Docker image that is compatible with Apple Silicon (see [this discussion](https://elixirforum.com/t/building-elixir-erlang-linux-amd64-application-image-on-apple-silicon/43913) for more information. For other cases you can use the `elixir:latest` container image.
+
+First, add your Datadog API key. This example assumes you have a file in you home directory called `sandbox.docker.env` that contains:
 
 ```
 DD_API_KEY=<Datadog API Key>
