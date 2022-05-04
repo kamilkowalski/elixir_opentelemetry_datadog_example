@@ -32,13 +32,8 @@ config :phoenix, :json_library, Jason
 
 config :opentelemetry, :processors,
     otel_batch_processor: %{
-      # Using `otel` here since we are starting through docker-compose where
-      # otel refer to the hostname of the OpenCollector,
-        #
-      # If you are running it locally, kindly change it to the correct
-      # hostname such as `localhost`, `0.0.0.0` and etc.
+      # dd-agent is the name of the Datadog agent container listening on port 4318: https://docs.datadoghq.com/tracing/setup_overview/open_standards/otlp_ingest_in_the_agent
       exporter: {:opentelemetry_exporter, %{endpoints: ["http://dd-agent:4318"]}}
-
     }
 
 # Import environment specific config. This must remain at the bottom
