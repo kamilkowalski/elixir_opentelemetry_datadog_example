@@ -2,6 +2,7 @@
 
 This is an example Phoenix application that makes use of OpenTelemetry tracing and sends traces to Datadog through a Datadog agent over [OTLP](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/otlp.md).
 
+![alt text](otlp-ingest.png "OTLP Ingest Configuration")
 
 This is the recommended approach for [sending OpenTelemetry data to Datadog](https://docs.datadoghq.com/tracing/setup_overview/open_standards/otlp_ingest_in_the_agent/?tab=docker).
 
@@ -41,4 +42,4 @@ Most of the source code is that of a Phoenix application with OpenTelemetry conf
 * [`opentelemetry`](https://hex.pm/packages/opentelemetry) - collects traces within our runtime and passes them to the exporter,
 * [`opentelemetry_exporter`](https://hex.pm/packages/opentelemetry_exporter) - exports traces using OpenTelemetry Protocol to the OpenTelemetry Collector.
 
-Instrumented code can be seen in the `[PostController](https://github.com/codyborders/elixir_opentelemetry_datadog_example/blob/main/lib/otel_example_web/controllers/post_controller.ex#L10)`'s `index` function.
+Instrumented code can be seen in the [PostController](https://github.com/codyborders/elixir_opentelemetry_datadog_example/blob/main/lib/otel_example_web/controllers/post_controller.ex#L10)'s `index` function.
